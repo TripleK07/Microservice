@@ -1,0 +1,6 @@
+@EM.Services.AuthAPI_HostAddress = http://localhost:5187
+
+GET {{EM.Services.AuthAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

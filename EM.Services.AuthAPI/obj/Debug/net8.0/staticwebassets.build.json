@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "SRu9+tAttB2p5fOf6GKS9Blq4C2sil1xE3BTEtJU4TY=",
+  "Source": "EM.Services.AuthAPI",
+  "BasePath": "_content/EM.Services.AuthAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

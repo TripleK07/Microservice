@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "8vv7vP+VkdYKPjfjG78UwMGnECm9x2mFREJsrZPHRZU=",
+  "Source": "EM.Services.CouponAPI",
+  "BasePath": "_content/EM.Services.CouponAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
