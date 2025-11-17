@@ -1,5 +1,5 @@
 using EM.Core.Models.Dto;
-using EM.Web.Services.Interfaces;
+using EM.Web.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zJxiicE+Aa/zlPqUSaMdRAHkweAgzkdkQnmhhU/qn1A=",
+  "Hash": "UB3JV8wF/H0dnvZc1JYC+x67xkuCaxaXuXNpWyDnoBo=",
   "Source": "EM.Web",
   "BasePath": "_content/EM.Web",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/khantko/Learning/Microservice/EM.Web/obj/Debug/net8.0/scopedcss/projectbundle/EM.Web.bundle.scp.css"
+    },
+    {
+      "Identity": "/Users/khantko/Learning/Microservice/EM.Web/wwwroot/assets/login-bg.jpg",
+      "SourceId": "EM.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/khantko/Learning/Microservice/EM.Web/wwwroot/",
+      "BasePath": "_content/EM.Web",
+      "RelativePath": "assets/login-bg.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/login-bg.jpg"
     },
     {
       "Identity": "/Users/khantko/Learning/Microservice/EM.Web/wwwroot/css/site.css",

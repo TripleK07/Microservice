@@ -52,17 +52,23 @@ public class AuthService : IAuthService
 
     public async Task<string> Register(RegisterationRequestDto registerationRequestDto)
     {
-        try
-        {
-            ApplicationUser user = _mapper.Map<ApplicationUser>(registerationRequestDto);
-            //user.UserName = registerationRequestDto.Email;
+        var user = _mapper.Map<ApplicationUser>(registerationRequestDto);
+        var result = await _userManager.CreateAsync(user, registerationRequestDto.Password);
+        return result.Succeeded ? string.Empty : result.Errors.FirstOrDefault()?.Description ?? "Registration failed";
+    }
 
-            var result = await _userManager.CreateAsync(user, registerationRequestDto.Password);
-            return result.Succeeded ? String.Empty : result.Errors.FirstOrDefault()?.Description;
-        }
-        catch (Exception)
+    public async Task<bool> AssignRole(string userName, string roleName)
+    {
+        var user = await _userManager.FindByNameAsync(userName);
+        if (user == null)
+            return false;
+
+        if (!await _roleManager.RoleExistsAsync(roleName.ToUpper()))
         {
-            return "Error Occurred during Registration";
+            await _roleManager.CreateAsync(new IdentityRole(roleName.ToUpper()));
         }
+
+        await _userManager.AddToRoleAsync(user, roleName.ToUpper());
+        return true;
     }
 }

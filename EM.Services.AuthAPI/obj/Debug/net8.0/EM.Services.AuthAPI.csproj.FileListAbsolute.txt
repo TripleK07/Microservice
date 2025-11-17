@@ -292,3 +292,4 @@
 /Users/khantko/Learning/Microservice/EM.Services.AuthAPI/obj/Debug/net8.0/EM.Services.AuthAPI.pdb
 /Users/khantko/Learning/Microservice/EM.Services.AuthAPI/obj/Debug/net8.0/EM.Services.AuthAPI.genruntimeconfig.cache
 /Users/khantko/Learning/Microservice/EM.Services.AuthAPI/obj/Debug/net8.0/ref/EM.Services.AuthAPI.dll
+/Users/khantko/Learning/Microservice/EM.Services.AuthAPI/obj/Debug/net8.0/EM.Services.AuthAPI.sourcelink.json

@@ -1,17 +1,28 @@
-using EM.Web.Service;
-using EM.Web.Service.IService;
-using EM.Web.Services.Interfaces;
+using EM.Web.Interfaces;
+using EM.Web.Services;
 using EM.Web.Utilities;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 Common.CouponAPIBase = builder.Configuration.GetValue<string>("ServiceUrls:CouponAPI");
+Common.AuthAPIBase = builder.Configuration.GetValue<string>("ServiceUrls:AuthAPI"); 
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICouponService, CouponService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IBaseService, BaseService>();
-
+builder.Services.AddScoped<ITokenProvider, TokenProvider>();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(opt =>
+    {
+        opt.ExpireTimeSpan = TimeSpan.FromHours(12);
+        opt.LoginPath = "/Auth/Login";
+        opt.AccessDeniedPath = "/Auth/AccessDenied";
+    });
+    
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,11 +37,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Coupon}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

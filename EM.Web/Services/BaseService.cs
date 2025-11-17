@@ -1,9 +1,9 @@
-﻿using EM.Web.Service.IService;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Text;
 using EM.Core.Models.Dto;
+using EM.Web.Interfaces;
 
-namespace EM.Web.Service
+namespace EM.Web.Services
 {
     public class BaseService : IBaseService
     {

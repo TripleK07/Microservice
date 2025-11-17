@@ -30,28 +30,28 @@ namespace EM.Services.AuthAPI.Controllers
             return Ok(responseDto);
         }
 
-        [HttpPost("Register")]    
+        [HttpPost("Register")]
         public async Task<IActionResult> Register(RegisterationRequestDto registrationRequestDto)
         {
             string errorMsg = await _authService.Register(registrationRequestDto);
-            if (errorMsg != String.Empty)
+            responseDto = new ResponseDto
             {
-                responseDto = new ResponseDto
-                {
-                    IsSuccess = false,
-                    Message = errorMsg
-                };
-                return BadRequest(responseDto);
-            }
-            else
+                IsSuccess = String.IsNullOrEmpty(errorMsg),
+                Message = String.IsNullOrEmpty(errorMsg) ? "User Registered Successfully" : errorMsg
+            };
+            return Ok(responseDto);
+        }
+
+        [HttpPost("AssignRole")]
+        public async Task<IActionResult> AssignRole(RegisterationRequestDto registerationRequestDto)
+        {
+            var result = await _authService.AssignRole(registerationRequestDto.UserName, registerationRequestDto.Role.ToUpper());
+            responseDto = new ResponseDto
             {
-                responseDto = new ResponseDto
-                {
-                    IsSuccess = true,
-                    Message = "User Registered Successfully"
-                };
-                return Ok(responseDto);
-            }
+                IsSuccess = result,
+                Message = result ? "Role Assigned Successfully" : "Role Assigned Failed"
+            };
+            return Ok(responseDto);
         }
     }
 }

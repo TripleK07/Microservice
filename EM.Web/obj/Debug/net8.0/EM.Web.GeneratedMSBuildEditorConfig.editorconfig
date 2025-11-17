@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/khantko/Learning/Microservice/EM.Web
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/khantko/Learning/Microservice/EM.Web/Views/Auth/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aC9Mb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/khantko/Learning/Microservice/EM.Web/Views/Coupon/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ291cG9uL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,0 +1,188 @@
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+<style type="text/css">
+    body {
+        background-image: url('@Url.Content("~/assets/login-bg.jpg")');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .login_page {
+        width: 360px;
+        padding: 10% 0 0;
+        margin: auto;
+    }
+
+    .form {
+        position: relative;
+        z-index: 1;
+        background: #ffffff; /* Form background remains white */
+        max-width: 360px;
+        margin: 0 auto 100px;
+        padding: 45px;
+        text-align: center;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .form input {
+        font-family: "Roboto", Sans-serif;
+        outline: 1;
+        width: 100%;
+        border: 1px solid #c0c0c0;
+        margin: 0 0 15px;
+        padding: 15px;
+        box-sizing: border-box;
+        font-size: 14px;
+        border-radius: 2px;
+        background-color: #ffffff;
+    }
+
+    .form button {
+        font-family: "Roboto", Sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        background: #edecf0;
+        width: 100%;
+        border: 2;
+        border-radius: 4px;
+        padding: 15px;
+        color: #333;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .form button:hover,
+    .form button:active {
+        background: #ebe8f2;
+        color: #333;
+    }
+
+    .form .message {
+        margin: 15px 0 0;
+        color: #666;
+        font-size: 16px;
+    }
+
+    .form .message a {
+        color: #007bff; /* Bootstrap primary color */
+        text-decoration: none;
+    }
+
+</style>
+<html>
+<div class="col-md-12">
+    <div class="login_page" id="login_section">
+        <div class="form">
+            <form id="login_form">
+                <h2>Welcome back!</h2>
+                <input type="text" name="UserName" placeholder="Username" required>
+                <input type="password" name="Password" placeholder="Password" required>
+                <button>Login</button>
+                <p class="message">New User? <a id="register_link" href="#">Register Now!</a></p>
+            </form>
+        </div>
+    </div>
+    <div class="login_page" id="register_section">
+        <div class="form">
+            <form id="register_form">
+                <h2>Welcome!</h2>
+                <input type="text" name="Name" placeholder="Display Name" required />
+                <input type="text" name="UserName" placeholder="Username" required />
+                <input type="password" name="Password" placeholder="Password" required />
+                <input type="email" name="Email" placeholder="Email" required />
+                <input type="text" name="PhoneNumber" placeholder="Phone Number" required />
+                <button>Register</button>
+                <p class="message">Already Registered? <a id="login_link" href="#">Login</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const API_ENDPOINTS = {
+        Login: '/Auth/Login',
+        Register: '/Auth/Register',
+    };
+
+    function displayLoginSection() {
+        document.getElementById("login_section").style.display = "block";
+        document.getElementById("register_section").style.display = "none";
+        document.getElementById("register_form").reset();
+    }
+
+    function displayRegisterSection() {
+        document.getElementById("login_section").style.display = "none";
+        document.getElementById("register_section").style.display = "block";
+        document.getElementById("login_form").reset();
+    }
+
+    function showMessage(title, msg, isError) {
+        Swal.fire({
+            title: title,
+            text: msg,
+            icon: isError ? "error" : "success",
+            draggable: true
+        });
+    }
+
+    function init(){
+        document.getElementById("register_link").onclick = function() {
+            displayRegisterSection();
+        }
+
+        document.getElementById("login_link").onclick = function() {
+            displayLoginSection();
+        }
+
+        document.getElementById("login_form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            $("#login_errmsg").val('');
+            $.ajax({
+                url: API_ENDPOINTS.Login,
+                type: 'POST',
+                data: $("#login_form").serialize(),
+                success: function (response) {
+                    if(response && response.Token && response.Token != ""){
+                        window.location.href = '/';
+                    }
+                    else{
+                        showMessage("Login", "Invalid credential. Please try again.", true);  
+                    }
+                },
+                error: (xhr, status, error) => showMessage("Login", error, true)
+            });
+        });
+
+        document.getElementById("register_form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            $.ajax({
+                url: API_ENDPOINTS.Register,
+                type: 'POST',
+                data: $("#register_form").serialize(),
+                success: function (response) {
+                    if (response.IsSuccess) {
+                        showMessage("Register",response.Message, false);
+                        displayLoginSection();
+                    }
+                    else{
+                        showMessage("Register", response.Message, true);
+                    }
+                },
+                error: (xhr, status, error) => showMessage("Register", error, true)
+            });
+        });
+
+        displayLoginSection();
+    }
+
+    $(document).ready(init);
+</script>
+</html> 

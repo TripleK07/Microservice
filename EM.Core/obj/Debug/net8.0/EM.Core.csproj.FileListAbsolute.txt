@@ -20,3 +20,4 @@
 /Users/khantko/Learning/Microservice/EM.Core/obj/Debug/net8.0/refint/EM.Core.dll
 /Users/khantko/Learning/Microservice/EM.Core/obj/Debug/net8.0/EM.Core.pdb
 /Users/khantko/Learning/Microservice/EM.Core/obj/Debug/net8.0/ref/EM.Core.dll
+/Users/khantko/Learning/Microservice/EM.Core/obj/Debug/net8.0/EM.Core.sourcelink.json

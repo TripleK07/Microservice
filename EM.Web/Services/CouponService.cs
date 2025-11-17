@@ -1,10 +1,9 @@
 using EM.Core.Models.Dto;
-using EM.Web.Service.IService;
-using EM.Web.Services.Interfaces;
+using EM.Web.Interfaces;
 using EM.Web.Utilities;
 using Newtonsoft.Json;
 
-namespace EM.Web.Service
+namespace EM.Web.Services
 {
     public class CouponService : ICouponService
     {
